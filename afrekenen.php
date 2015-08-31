@@ -14,7 +14,10 @@ $classLoader->register();
 
 session_start();
 
+if(!isset($_SESSION["aangemeld"])){
+    $_SESSION["aangemeld"] = false;
+}
 
-
-$view = $twig->render("afrekening.twig");
+$view = $twig->render("afrekening.twig", array("winkelmandje" => $_SESSION["winkelmandje"],
+    "totaalprijs" => $_SESSION["prijs"], "aangemeld" => $_SESSION["aangemeld"]));
 print($view);
