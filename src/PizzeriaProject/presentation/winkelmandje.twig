@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta charset = utf-8>
+        <title>Pizzeria</title>
+    </head>
+    <body>
+        <ul>
+            <li>
+                <a href="index.php">Home</a>
+            </li>
+            <li>
+                <a href="menutonen.php">Menu</a>
+            </li>
+            <li>
+                <a id="active" href="winkelmandjetonen.php">Winkelmandje</a>
+            </li>
+        </ul>
+        <h1>Winkelmandje</h1>
+        {% if leeg == false %}
+            <table>
+                {% for key, product in winkelmandje%}
+                    <tr>
+                        <td>{{ product.naam }}</td>
+                        <td>&euro; {{ product.prijs }}</td>
+                        <td><a href="winkelmandjetonen.php?verwijder={{ key }}">X</a></td>
+                    </tr>
+                {% endfor %}
+                <tr>
+                    <td></td>
+                    <td>&euro; {{ totaalprijs }}</td>
+                </tr>
+                <tr>
+                    <td>
+                        <form action="afrekenen.php">
+                            <input type="submit" value="Afrekenen">
+                        </form>
+                    </td>
+                </tr>
+            </table>
+        {% else %}
+            <p>Uw winkelmandje is leeg</p>
+        {% endif %}
+    </body>
+</html>

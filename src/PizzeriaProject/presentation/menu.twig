@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta charset = utf-8>
+        <title>Pizzeria</title>
+        <style>
+            .nietBeschikbaar{
+                pointer-events: none;
+            }
+        </style>
+    </head>
+    <body>
+        <ul>
+            <li>
+                <a href="index.php">Home</a>
+            </li>
+            <li>
+                <a id="active" href="menutonen.php">Menu</a>
+            </li>
+            <li>
+                <a href="winkelmandjetonen.php">Winkelmandje</a>
+            </li>
+        </ul>
+        <h1>Menu</h1>
+        <table>
+            <tr>
+                <th>Naam</th>
+                <th>Prijs</th>
+                <th>Samenstelling</th>
+            </tr>
+            {% for product in menu %}
+                <tr>
+                    <td>
+                        {% if product.beschikbaarheid == 0 %}
+                            <a href="menutonen.php?product={{ product.id }}">{{ product.naam }}</a>
+                        {% else %}
+                            <a class="nietBeschikbaar" href="menutonen.php?product={{ product.id }}">{{ product.naam }}</a> (niet beschikbaar)
+                        {% endif %}
+                    </td>
+                    <td>&euro; {{ product.prijs }}</td>
+                    <td>{{ product.beschikbaarheid }} {{ product.samenstelling }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+        {% if leeg == false %}
+            <h1>Winkelmandje</h1>
+            <table>
+                {% for key, product in winkelmandje%}
+                    <tr>
+                        <td>{{ product.naam }}</td>
+                        <td>&euro; {{ product.prijs }}</td>
+                        <td><a href="menutonen.php?verwijder={{ key }}">X</a></td>
+                    </tr>
+                {% endfor %}
+                <tr>
+                    <td></td>
+                    <td>&euro; {{ totaalprijs }}</td>
+                </tr>
+                <tr>
+                    <td>
+                        <form action="afrekenen.php">
+                            <input type="submit" value="Afrekenen">
+                        </form>
+                    </td>
+                </tr>
+            </table>
+        {% endif %}
+    </body>
+</html>
