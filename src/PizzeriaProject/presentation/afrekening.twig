@@ -28,7 +28,7 @@
                 <table>
                     {% for bestreg in bestregels %}
                         <tr>
-                            {% product in producten %}
+                            {% for product in producten %}
                             {% if product.id == bestreg.productId %}
                             <td>{{ product.naam }}</td>
                             {% endif %}
