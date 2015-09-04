@@ -22,11 +22,21 @@ if (isset($_SESSION["aangemeld"])) {
     }
 }
 
+if (isset($_GET["bestellen"])) {
+    if ($_GET["bestellen"]) {
+        $_SESSION["bestellen"] = true;
+    } else {
+        $_SESSION["bestellen"] = false;
+    }
+    header("Location: registreren.php");
+    exit(0);
+}
+
 if (isset($_GET["action"])) {
     if ($_GET["action"] == "registreren") {
         if (($_POST["voornaam"] != null) && ($_POST["achternaam"] != null) && ($_POST["straat"] != null) && ($_POST["huisnummer"] != null) && ($_POST["postcode"] != null) && ($_POST["woonplaats"] != null) && ($_POST["telefoon"] != null) && ($_POST["email"] != null) && ($_POST["wachtwoord"] != null)) {
             /* Geen controle of klant bestaat! */
-            KlantService::createNewKlant($_POST["achternaam"], $_POST["voornaam"], $_POST["straat"], $_POST["huisnummer"], $_POST["postcode"], $_POST["woonplaats"], $_POST["telefoon"], $_POST["email"], sha1($_POST["wachtwoord"]));
+            KlantService::createKlant($_POST["achternaam"], $_POST["voornaam"], $_POST["straat"], $_POST["huisnummer"], $_POST["postcode"], $_POST["woonplaats"], $_POST["telefoon"], $_POST["email"], sha1($_POST["wachtwoord"]));
             header("Location: inloggen.php");
             exit(0);
         } else {

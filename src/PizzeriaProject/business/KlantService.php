@@ -21,7 +21,7 @@ class KlantService {
         return $klant;
     }
     
-    public function createNewKlant($naam, $voornaam, $straat, $huisnummer, $postcode, $woonplaats, $telefoon, $email, $wachtwoord) {
+    public function createKlant($naam, $voornaam, $straat, $huisnummer, $postcode, $woonplaats, $telefoon, $email, $wachtwoord) {
         KlantDAO::create($naam, $voornaam, $straat, $huisnummer, $postcode, $woonplaats, $telefoon, $email, $wachtwoord);
     }
 
