@@ -53,6 +53,10 @@ if (empty($_SESSION["winkelmandje"])) {
     $leeg = false;
 }
 
+if(!isset($_SESSION["winkelmandje"])){
+    $_SESSION["winkelmandje"] = null;
+}
+
 if(!isset($_SESSION["aangemeld"])){
     $_SESSION["aangemeld"] = false;
 }

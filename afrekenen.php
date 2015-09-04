@@ -55,12 +55,28 @@ if (isset($_GET["bestelcheck"])) {
     $bestregels = BestregService::getBestreg($bestelling->getId());
 }
 
+if(!isset($bestelling)){
+    $bestelling = null;
+}
+
+if(!isset($bestregels)){
+    $bestregels = null;
+}
+
+if(!isset($producten)){
+    $producten = null;
+}
+
 if (!isset($_SESSION["aangemeld"])) {
     $_SESSION["aangemeld"] = false;
 }
 
 if (!isset($bestelcheck)) {
     $bestelcheck = false;
+}
+
+if(!isset($_SESSION["winkelmandje"])){
+    $_SESSION["winkelmandje"] = null;
 }
 
 $view = $twig->render("afrekening.twig", array("winkelmandje" => $_SESSION["winkelmandje"],

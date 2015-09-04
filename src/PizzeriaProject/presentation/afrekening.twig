@@ -29,9 +29,9 @@
                     {% for bestreg in bestregels %}
                         <tr>
                             {% for product in producten %}
-                            {% if product.id == bestreg.productId %}
-                            <td>{{ product.naam }}</td>
-                            {% endif %}
+                                {% if product.id == bestreg.productId %}
+                                    <td>{{ product.naam }}</td>
+                                {% endif %}
                             {% endfor %}
                             <td>&euro; {{ bestreg.prijs }}</td>
                         </tr>
