@@ -15,9 +15,14 @@
             <li>
                 <a href="winkelmandjetonen.php">Winkelmandje</a>
             </li>
+            {% if aangemeld %}
+                <li>
+                    <a href="index.php?action=uitloggen">Log uit</a>
+                </li>
+            {% endif %}
         </ul>
         {% if aangemeld %}
-        <h1>Afrekenen</h1>
+            <h1>Afrekenen</h1>
             <table>
                 {% for key, product in winkelmandje%}
                     <tr>
@@ -40,9 +45,9 @@
             </table>
         {% else %}
             <p>U dient ingelogd te zijn om af te rekenen.</p>
-            <a href="inloggen.php">Ik heb een account</a>
+            <a href="inloggen.php?bestellen=true">Log in</a>
             <br>
-            <a href="registreren.php">Ik heb nog geen account</a>
+            <a href="registreren.php">Registreren</a>
         {% endif %}
     </body>
 </html>

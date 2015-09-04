@@ -14,6 +14,17 @@ $classLoader->register();
 
 session_start();
 
+if(isset($_GET["action"])){
+    if($_GET["action"] == uitloggen){
+        $_SESSION["aangemeld"] = false;
+        unset($_SESSION["winkelmandje"]);
+        $_SESSION["prijs"] = 0;
+        
+        header("Location: afrekenen.php");
+        exit(0);
+    }
+}
+
 if(!isset($_SESSION["aangemeld"])){
     $_SESSION["aangemeld"] = false;
 }

@@ -36,6 +36,16 @@ if(isset($_GET["verwijder"])){
     exit(0);
 }
 
+if(isset($_GET["action"])){
+    if($_GET["action"] == uitloggen){
+        $_SESSION["aangemeld"] = false;
+        unset($_SESSION["winkelmandje"]);
+        $_SESSION["prijs"] = 0;
+        
+        header("Location: menutonen.php");
+        exit(0);
+    }
+}
 
 if (empty($_SESSION["winkelmandje"])) {
     $leeg = true;
@@ -43,6 +53,10 @@ if (empty($_SESSION["winkelmandje"])) {
     $leeg = false;
 }
 
+if(!isset($_SESSION["aangemeld"])){
+    $_SESSION["aangemeld"] = false;
+}
+
 $view = $twig->render("menu.twig", array("menu" => $menu, "winkelmandje" => $_SESSION["winkelmandje"],
-    "totaalprijs" => $_SESSION["prijs"], "leeg" => $leeg));
+    "totaalprijs" => $_SESSION["prijs"], "leeg" => $leeg, "aangemeld" => $_SESSION["aangemeld"]));
 print($view);

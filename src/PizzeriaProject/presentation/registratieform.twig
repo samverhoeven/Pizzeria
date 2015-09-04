@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta charset = utf-8>
+        <title>Pizzeria</title>
+    </head>
+    <body>
+        <ul>
+            <li>
+                <a id="active" href="index.php">Home</a>
+            </li>
+            <li>
+                <a href="menutonen.php">Menu</a>
+            </li>
+            <li>
+                <a href="winkelmandjetonen.php">Winkelmandje</a>
+            </li>
+            <li>
+                <a href="inloggen.php">Log in</a>
+            </li>
+        </ul>
+        <h1>Registreren</h1>
+        <form method="post" action="registreren.php?action=registreren">
+            <table>
+                <tr>
+                    <td><label for="voornaam">Voornaam:</label></td>
+                    <td><input type="text" name="voornaam"></td>
+                </tr>
+                <tr>
+                    <td><label for="achternaam">Achternaam:</label></td>
+                    <td><input type="text" name="achternaam"></td>
+                </tr>
+                <tr>
+                    <td><label for="straat">Straat:</label></td>
+                    <td><input type="text" name="straat"></td>
+                </tr>
+                <tr>
+                    <td><label for="huisnummer">Huisnummer:</label></td>
+                    <td><input type="text" name="huisnummer"></td>
+                </tr>
+                <tr>
+                    <td><label for="postcode">Postcode:</label></td>
+                    <td><input type="text" name="postcode"></td>
+                </tr>
+                <tr>
+                    <td><label for="woonplaats">Woonplaats:</label></td>
+                    <td><input type="text" name="woonplaats"></td>
+                </tr>
+                <tr>
+                    <td><label for="telefoon">Telefoon:</label></td>
+                    <td><input type="text" name="telefoon"></td>
+                </tr>
+                <tr>
+                    <td><label for="email">E-mailadres:</label></td>
+                    <td><input type="text" name="email"></td>
+                </tr>
+                <tr>
+                    <td><label for="wachtwoord">Wachtwoord:</label></td>
+                    <td><input type="password" name="wachtwoord"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" value="Registreren"></td>
+                </tr>
+            </table>
+        </form>
+    </body>
+</html>

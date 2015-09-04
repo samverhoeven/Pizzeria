@@ -16,6 +16,14 @@
             <li>
                 <a href="winkelmandjetonen.php">Winkelmandje</a>
             </li>
+            <li>
+                {% if aangemeld %}
+                    <a href="index.php?action=uitloggen">Log uit</a>
+                {% else %}
+                    <a href="inloggen.php">Log in</a>
+                {% endif %}
+            </li>
         </ul>
+        <p>Dit is pizzeria Samuel. Maak uw keuze uit het menu.</p>
     </body>
 </html>

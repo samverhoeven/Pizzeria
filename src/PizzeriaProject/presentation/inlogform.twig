@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta charset = utf-8>
+        <title>Pizzeria</title>
+    </head>
+    <body>
+        <ul>
+            <li>
+                <a id="active" href="index.php">Home</a>
+            </li>
+            <li>
+                <a href="menutonen.php">Menu</a>
+            </li>
+            <li>
+                <a href="winkelmandjetonen.php">Winkelmandje</a>
+            </li>
+        </ul>
+        <h1>Inloggen</h1>
+        <a href="registreren.php">Ik heb nog geen account</a>
+        <form method="post" action="inloggen.php?action=login">
+            <table>
+                <tr>
+                    <td><label for="email">E-mailadres:</label></td>
+                    <td><input type="text" name="email"></td>
+                </tr>
+                <tr>
+                    <td><label for="wachtwoord">Wachtwoord:</label></td>
+                    <td><input type="password" name="wachtwoord"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" value="log in"></td>
+                </tr>
+            </table>
+        </form>
+    </body>
+</html>

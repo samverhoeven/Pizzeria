@@ -28,14 +28,29 @@ if(isset($_GET["verwijder"])){
     exit(0);
 }
 
+if(isset($_GET["action"])){
+    if($_GET["action"] == uitloggen){
+        $_SESSION["aangemeld"] = false;
+        unset($_SESSION["winkelmandje"]);
+        $_SESSION["prijs"] = 0;
+        
+        header("Location: index.php");
+        exit(0);
+    }
+}
+
 if (empty($_SESSION["winkelmandje"])) {
     $leeg = true;
 } else {
     $leeg = false;
 }
 
+if(!isset($_SESSION["aangemeld"])){
+    $_SESSION["aangemeld"] = false;
+}
+
 $view = $twig->render("winkelmandje.twig", array("winkelmandje" => $_SESSION["winkelmandje"],
-    "totaalprijs" => $_SESSION["prijs"], "leeg" => $leeg));
+    "totaalprijs" => $_SESSION["prijs"], "leeg" => $leeg, "aangemeld" => $_SESSION["aangemeld"]));
 print($view);
 
 
