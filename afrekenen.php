@@ -50,6 +50,7 @@ if (isset($_GET["bestelcheck"])) {
     $bestelcheck = true;
     unset($_SESSION["winkelmandje"]);
     $_SESSION["prijs"] = 0;
+    $producten = ProductService::getAllProducts();
     $bestelling = BestellingService::getBestelling($_SESSION["klant"]);
     $bestregels = BestregService::getBestreg($bestelling->getId());
 }
@@ -64,5 +65,6 @@ if (!isset($bestelcheck)) {
 
 $view = $twig->render("afrekening.twig", array("winkelmandje" => $_SESSION["winkelmandje"],
     "totaalprijs" => $_SESSION["prijs"], "aangemeld" => $_SESSION["aangemeld"], 
-    "bestelcheck" => $bestelcheck, "bestelling" => $bestelling, "bestregels" => $bestregels));
+    "bestelcheck" => $bestelcheck, "bestelling" => $bestelling, "bestregels" => $bestregels,
+    "producten" => $producten));
 print($view);

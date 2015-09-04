@@ -7,8 +7,8 @@ use PizzeriaProject\Data\BestregDAO;
 class BestregService{
     
     public function getBestreg($bestellingId){
-        $bestelling = BestregDAO::getByBestellingId($bestellingId);
-        return $bestelling;
+        $bestreg = BestregDAO::getByBestellingId($bestellingId);
+        return $bestreg;
     }
     
     public function createBestreg($bestellingId, $productId, $prijs){
