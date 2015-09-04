@@ -1,6 +1,7 @@
 <?php
 
 use Doctrine\Common\ClassLoader;
+use PizzeriaProject\Business\KlantService;
 
 require_once("libraries/Doctrine/Common/ClassLoader.php");
 require_once("libraries/Twig/Autoloader.php");
@@ -25,7 +26,7 @@ if (isset($_GET["action"])) {
     if ($_GET["action"] == "registreren") {
         if (($_POST["voornaam"] != null) && ($_POST["achternaam"] != null) && ($_POST["straat"] != null) && ($_POST["huisnummer"] != null) && ($_POST["postcode"] != null) && ($_POST["woonplaats"] != null) && ($_POST["telefoon"] != null) && ($_POST["email"] != null) && ($_POST["wachtwoord"] != null)) {
             /* Geen controle of klant bestaat! */
-            KlantService::createNewKlant($_POST["achternaam"], $_POST["voornaam"], $_POST["straat"], $_POST["huisnummer"], $_POST["postcode"], $_POST["woonplaats"], $_POST["telefoon"], $_POST["email"], $_POST["wachtwoord"]);
+            KlantService::createNewKlant($_POST["achternaam"], $_POST["voornaam"], $_POST["straat"], $_POST["huisnummer"], $_POST["postcode"], $_POST["woonplaats"], $_POST["telefoon"], $_POST["email"], sha1($_POST["wachtwoord"]));
             header("Location: inloggen.php");
             exit(0);
         } else {
