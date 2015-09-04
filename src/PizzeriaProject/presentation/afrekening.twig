@@ -22,8 +22,21 @@
             {% endif %}
         </ul>
         {% if aangemeld %}
-            {% if bestelcheck%}
+            {% if bestelcheck %}
                 Uw bestelling is geplaatst.
+                U bestelde het volgende:
+                <table>
+                    {% for bestreg in bestregels %}
+                        <tr>
+                            <td>{{ bestreg.productid }}</td>
+                            <td>&euro; {{ bestreg.prijs }}</td>
+                        </tr>
+                    {% endfor %}
+                    <tr>
+                        <td></td>
+                        <td>{{ bestelling.prijs }}</td>
+                    </tr>
+                </table>
             {%else%}
                 <h1>Afrekenen</h1>
                 <table>

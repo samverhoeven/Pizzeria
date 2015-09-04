@@ -25,7 +25,7 @@ class BestregDAO {
     }
 
     public function create($bestellingId, $productId, $prijs) {
-        $sql = "insert into bestreg (bestellingid, broodjeid, regelprijs, tijdstip) "
+        $sql = "insert into bestreg (bestelid, productid, prijs) "
                 . "values('" . $bestellingId . "','" . $productId . "','" . $prijs . "')";
         $dbh = new PDO(DBConfig::$DB_CONNSTRING, DBConfig::$DB_USERNAME, DBConfig::$DB_PASSWORD);
         $dbh->exec($sql);
