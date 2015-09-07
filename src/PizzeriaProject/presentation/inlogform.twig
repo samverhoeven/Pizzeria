@@ -18,6 +18,12 @@
         </ul>
         <h1>Inloggen</h1>
         <a href="registreren.php">Ik heb nog geen account</a>
+        {% if foutegegevens %}
+            <p class="error">U vulde een verkeerd emailadres of wachtwoord in!</p>
+        {% endif %}
+        {% if bestaatniet %}
+            <p class="error">Dit emailadres is nog niet geregistreerd!</p>
+        {% endif %}
         <form method="post" action="inloggen.php?action=login">
             <table>
                 <tr>

@@ -34,7 +34,7 @@ class KlantService {
         }
     }
 
-    public function controleerGeregistreerd($email, $wachtwoord) {
+    public function controleerGeregistreerd($email) {
         $klant = KlantDAO::getByEmail($email);
         if (isset($klant)) {
             return true;

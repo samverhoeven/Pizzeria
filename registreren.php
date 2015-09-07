@@ -32,17 +32,24 @@ if (isset($_GET["bestellen"])) {
     exit(0);
 }
 
+$bestaat = false;
+$veldleeg = false;
+
 if (isset($_GET["action"])) {
     if ($_GET["action"] == "registreren") {
-        if (($_POST["voornaam"] != null) && ($_POST["achternaam"] != null) && ($_POST["straat"] != null) && ($_POST["huisnummer"] != null) && ($_POST["postcode"] != null) && ($_POST["woonplaats"] != null) && ($_POST["telefoon"] != null) && ($_POST["email"] != null) && ($_POST["wachtwoord"] != null)) {
-            /* Geen controle of klant bestaat! */
-            KlantService::createKlant($_POST["achternaam"], $_POST["voornaam"], $_POST["straat"], $_POST["huisnummer"], $_POST["postcode"], $_POST["woonplaats"], $_POST["telefoon"], $_POST["email"], sha1($_POST["wachtwoord"]));
-            header("Location: inloggen.php");
-            exit(0);
+        $klantSvc = new KlantService();
+        $geregistreerd = $klantSvc->controleerGeregistreerd($_POST["email"]);
+        if ($geregistreerd) {
+            $bestaat = true;
         } else {
-            if (($_POST["voornaam"] == null) || ($_POST["achternaam"] == null) ||($_POST["straat"] == null) || ($_POST["huisnummer"] == null) || ($_POST["postcode"] == null) || ($_POST["woonplaats"] == null) || ($_POST["telefoon"] == null) || ($_POST["email"] == null) || ($_POST["wachtwoord"] == null) || ($_POST["wachtwoordCheck"] == null)) {
-                header("Location: registreren.php?error=veldleeg");
+            if (($_POST["voornaam"] != null) && ($_POST["achternaam"] != null) && ($_POST["straat"] != null) && ($_POST["huisnummer"] != null) && ($_POST["postcode"] != null) && ($_POST["woonplaats"] != null) && ($_POST["telefoon"] != null) && ($_POST["email"] != null) && ($_POST["wachtwoord"] != null)) {
+                $productSvc->createKlant($_POST["achternaam"], $_POST["voornaam"], $_POST["straat"], $_POST["huisnummer"], $_POST["postcode"], $_POST["woonplaats"], $_POST["telefoon"], $_POST["email"], sha1($_POST["wachtwoord"]));
+                header("Location: inloggen.php");
                 exit(0);
+            } else {
+                if (($_POST["voornaam"] == null) || ($_POST["achternaam"] == null) || ($_POST["straat"] == null) || ($_POST["huisnummer"] == null) || ($_POST["postcode"] == null) || ($_POST["woonplaats"] == null) || ($_POST["telefoon"] == null) || ($_POST["email"] == null) || ($_POST["wachtwoord"] == null) || ($_POST["wachtwoordCheck"] == null)) {
+                    $veldleeg = true;
+                }
             }
         }
     }
@@ -52,5 +59,5 @@ if (!isset($_SESSION["aangemeld"])) {
     $_SESSION["aangemeld"] = false;
 }
 
-$view = $twig->render("registratieform.twig", array("aangemeld" => $_SESSION["aangemeld"]));
+$view = $twig->render("registratieform.twig", array("aangemeld" => $_SESSION["aangemeld"], "bestaat" => $bestaat, "veldleeg" => $veldleeg));
 print($view);

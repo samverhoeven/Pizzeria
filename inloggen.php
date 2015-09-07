@@ -34,6 +34,9 @@ if (isset($_GET["bestellen"])) {
     exit(0);
 }
 
+$foutegegevens = false;
+$bestaatniet = false;
+
 if (isset($_GET["action"])) {
     if ($_GET["action"] == "login") {
         $email = $_POST["email"];
@@ -53,13 +56,12 @@ if (isset($_GET["action"])) {
             header("Location: index.php");
             exit(0);
         } else {
-            $geregistreerd = $klantSvc->controleerGeregistreerd($email, $wachtwoord);
+            $geregistreerd = $klantSvc->controleerGeregistreerd($email);
             if ($geregistreerd) {
-                header("Location: inloggen.php?error=foutegegevens");
+                $foutegegevens = true;
             } else {
-                header("Location: inloggen.php?error=bestaatniet");
+                $bestaatniet = true;
             }
-            exit(0);
         }
     }
 }
@@ -72,5 +74,5 @@ if(!isset($_COOKIE["emailCookie"])){
     $_COOKIE["emailCookie"] = " ";
 }
 
-$view = $twig->render("inlogform.twig", array("aangemeld" => $_SESSION["aangemeld"], "email" => $_COOKIE["emailCookie"]));
+$view = $twig->render("inlogform.twig", array("aangemeld" => $_SESSION["aangemeld"], "email" => $_COOKIE["emailCookie"], "foutegegevens" => $foutegegevens, "bestaatniet" => $bestaatniet));
 print($view);

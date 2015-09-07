@@ -17,7 +17,6 @@ $classLoader->register();
 session_start();
 
 $productSvc = new ProductService();
-$menu = $productSvc->getAllProducts();
 
 if (isset($_SESSION["aangemeld"])) {
     if ($_SESSION["aangemeld"]) {

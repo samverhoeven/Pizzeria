@@ -20,6 +20,12 @@
             </li>
         </ul>
         <h1>Registreren</h1>
+        {% if bestaat %}
+        <p class="error">Dit emailadres is al in gebruik!</p>
+        {% endif %}
+        {% if veldleeg %}
+        <p class="error">Alle velden dienen ingevuld te worden!</p>
+        {% endif %}
         <form method="post" action="registreren.php?action=registreren">
             <table>
                 <tr>
