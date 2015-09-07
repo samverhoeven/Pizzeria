@@ -42,6 +42,7 @@ if (isset($_GET["action"])) {
         if ($resultaat) {
             $_SESSION["aangemeld"] = true;
             $_SESSION["klant"] = $klantSvc->getKlantId($email);
+            setcookie("emailCookie", $email);
             if (isset($_SESSION["bestellen"])) {
                 if ($_SESSION["bestellen"]) {
                     $_SESSION["bestellen"] = false;
@@ -67,5 +68,9 @@ if(!isset($_SESSION["aangemeld"])){
     $_SESSION["aangemeld"] = false;
 }
 
-$view = $twig->render("inlogform.twig", array("aangemeld" => $_SESSION["aangemeld"]));
+if(!isset($_COOKIE["emailCookie"])){
+    $_COOKIE["emailCookie"] = " ";
+}
+
+$view = $twig->render("inlogform.twig", array("aangemeld" => $_SESSION["aangemeld"], "email" => $_COOKIE["emailCookie"]));
 print($view);
