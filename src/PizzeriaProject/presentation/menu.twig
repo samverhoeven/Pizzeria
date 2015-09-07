@@ -6,6 +6,7 @@
         <style>
             .nietBeschikbaar{
                 pointer-events: none;
+                color : #ddd;
             }
         </style>
     </head>
@@ -38,14 +39,18 @@
             {% for product in menu %}
                 <tr>
                     <td>
-                        {% if product.beschikbaarheid == 0 %}
+                        {% if product.beschikbaarheid == 1 %}
                             <a href="menutonen.php?product={{ product.id }}">{{ product.naam }}</a>
                         {% else %}
                             <a class="nietBeschikbaar" href="menutonen.php?product={{ product.id }}">{{ product.naam }}</a> (niet beschikbaar)
                         {% endif %}
                     </td>
-                    <td>&euro; {{ product.prijs }}</td>
-                    <td>{{ product.beschikbaarheid }} {{ product.samenstelling }}</td>
+                    {% if aangemeld == true and klant.promotie == 1 %}
+                        <td>&euro; {{ product.promotie }}</td>
+                    {% else %}
+                        <td>&euro; {{ product.prijs }}</td>
+                    {% endif %}
+                    <td>{{ product.samenstelling }}</td>
                 </tr>
             {% endfor %}
         </table>
@@ -55,7 +60,11 @@
                 {% for key, product in winkelmandje%}
                     <tr>
                         <td>{{ product.naam }}</td>
-                        <td>&euro; {{ product.prijs }}</td>
+                        {% if aangemeld == true and klant.promotie == 1 %}
+                            <td>&euro; {{ product.promotie }}</td>
+                        {% else %}
+                            <td>&euro; {{ product.prijs }}</td>
+                        {% endif %}
                         <td><a href="menutonen.php?verwijder={{ key }}">X</a></td>
                     </tr>
                 {% endfor %}

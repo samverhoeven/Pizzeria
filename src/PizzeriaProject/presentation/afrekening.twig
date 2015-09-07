@@ -47,7 +47,11 @@
                     {% for key, product in winkelmandje%}
                         <tr>
                             <td>{{ product.naam }}</td>
-                            <td>&euro; {{ product.prijs }}</td>
+                            {% if aangemeld == true and klant.promotie == 1 %}
+                                <td>&euro; {{ product.promotie }}</td>
+                            {% else %}
+                                <td>&euro; {{ product.prijs }}</td>
+                            {% endif %}
                             <td><a href="afrekenen.php?verwijder={{ key }}">X</a></td>
                         </tr>
                     {% endfor %}

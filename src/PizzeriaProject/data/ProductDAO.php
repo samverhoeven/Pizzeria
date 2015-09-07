@@ -13,8 +13,7 @@ class ProductDAO{
         $sql = "select * from producten";
         $resultSet = $dbh->query($sql);
         foreach($resultSet as $rij){
-            $lijst[] = Product::create($rij["id"], $rij["naam"], $rij["prijs"], $rij["samenstelling"], 
-                    $rij["voedingswaarden"], $rij["beschikbaarheid"], $rij["beschikbaarheid"]);
+            $lijst[] = Product::create($rij["id"], $rij["naam"], $rij["prijs"], $rij["samenstelling"], $rij["beschikbaarheid"], $rij["promotie"]);
         }
         $dbh = null;
         return $lijst;
@@ -25,8 +24,7 @@ class ProductDAO{
         $sql = "select * from producten where id = '" . $id ."'";
         $resultSet = $dbh->query($sql);
         $rij = $resultSet->fetch();
-        $product = Product::create($rij["id"], $rij["naam"], $rij["prijs"], $rij["samenstelling"], 
-                    $rij["voedingswaarden"], $rij["beschikbaarheid"], $rij["beschikbaarheid"]);
+        $product = Product::create($rij["id"], $rij["naam"], $rij["prijs"], $rij["samenstelling"], $rij["beschikbaarheid"], $rij["promotie"]);
         $dbh = null;
         return $product;
     }

@@ -3,21 +3,31 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/xampp/htdocs/samverhoeven/Pizzeria/src/PizzeriaProject/entities/Bestelregel.php</file>
             <file>file:/C:/xampp/htdocs/samverhoeven/Pizzeria/src/PizzeriaProject/entities/Klant.php</file>
-            <file>file:/C:/xampp/htdocs/samverhoeven/Pizzeria/index.php</file>
-            <file>file:/C:/xampp/htdocs/samverhoeven/Pizzeria/src/PizzeriaProject/presentation/menu.twig</file>
-            <file>file:/C:/xampp/htdocs/samverhoeven/Pizzeria/src/PizzeriaProject/presentation/winkelmandje.twig</file>
             <file>file:/C:/xampp/htdocs/samverhoeven/Pizzeria/afrekenen.php</file>
-            <file>file:/C:/xampp/htdocs/samverhoeven/Pizzeria/menutonen.php</file>
+            <file>file:/C:/xampp/htdocs/samverhoeven/Pizzeria/src/PizzeriaProject/presentation/menu.twig</file>
             <file>file:/C:/xampp/htdocs/samverhoeven/Pizzeria/src/PizzeriaProject/data/DBConfig.php</file>
+            <file>file:/C:/xampp/htdocs/samverhoeven/Pizzeria/src/PizzeriaProject/business/BestregService.php</file>
             <file>file:/C:/xampp/htdocs/samverhoeven/Pizzeria/src/PizzeriaProject/business/KlantService.php</file>
-            <file>file:/C:/xampp/htdocs/samverhoeven/Pizzeria/src/PizzeriaProject/data/KlantDAO.php</file>
             <file>file:/C:/xampp/htdocs/samverhoeven/Pizzeria/winkelmandjetonen.php</file>
             <file>file:/C:/xampp/htdocs/samverhoeven/Pizzeria/src/PizzeriaProject/presentation/index.twig</file>
             <file>file:/C:/xampp/htdocs/samverhoeven/Pizzeria/src/PizzeriaProject/data/ProductDAO.php</file>
+            <file>file:/C:/xampp/htdocs/samverhoeven/Pizzeria/src/PizzeriaProject/presentation/inlogform.twig</file>
             <file>file:/C:/xampp/htdocs/samverhoeven/Pizzeria/src/PizzeriaProject/entities/Product.php</file>
             <file>file:/C:/xampp/htdocs/samverhoeven/Pizzeria/src/PizzeriaProject/business/ProductService.php</file>
             <file>file:/C:/xampp/htdocs/samverhoeven/Pizzeria/src/PizzeriaProject/presentation/afrekening.twig</file>
+            <file>file:/C:/xampp/htdocs/samverhoeven/Pizzeria/inloggen.php</file>
+            <file>file:/C:/xampp/htdocs/samverhoeven/Pizzeria/src/PizzeriaProject/entities/Bestelling.php</file>
+            <file>file:/C:/xampp/htdocs/samverhoeven/Pizzeria/index.php</file>
+            <file>file:/C:/xampp/htdocs/samverhoeven/Pizzeria/src/PizzeriaProject/presentation/winkelmandje.twig</file>
+            <file>file:/C:/xampp/htdocs/samverhoeven/Pizzeria/src/PizzeriaProject/presentation/registratieform.twig</file>
+            <file>file:/C:/xampp/htdocs/samverhoeven/Pizzeria/menutonen.php</file>
+            <file>file:/C:/xampp/htdocs/samverhoeven/Pizzeria/registreren.php</file>
+            <file>file:/C:/xampp/htdocs/samverhoeven/Pizzeria/src/PizzeriaProject/data/KlantDAO.php</file>
+            <file>file:/C:/xampp/htdocs/samverhoeven/Pizzeria/src/PizzeriaProject/data/BestellingDAO.php</file>
+            <file>file:/C:/xampp/htdocs/samverhoeven/Pizzeria/src/PizzeriaProject/business/BestellingService.php</file>
+            <file>file:/C:/xampp/htdocs/samverhoeven/Pizzeria/src/PizzeriaProject/data/BestregDAO.php</file>
         </group>
     </open-files>
 </project-private>

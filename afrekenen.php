@@ -4,6 +4,7 @@ use Doctrine\Common\ClassLoader;
 use PizzeriaProject\Business\BestellingService;
 use PizzeriaProject\Business\BestregService;
 use PizzeriaProject\Business\ProductService;
+use PizzeriaProject\Business\KlantService;
 
 require_once("libraries/Doctrine/Common/ClassLoader.php");
 require_once("libraries/Twig/Autoloader.php");
@@ -16,6 +17,14 @@ $classLoader = new ClassLoader("PizzeriaProject", "src");
 $classLoader->register();
 
 session_start();
+
+$productSvc = new ProductService();
+
+if (isset($_SESSION["aangemeld"])) {
+    if ($_SESSION["aangemeld"]) {
+        $klant = KlantService::getKlantById($_SESSION["klant"]);
+    }
+}
 
 if (isset($_GET["action"])) {
     if ($_GET["action"] == uitloggen) {
@@ -31,7 +40,11 @@ if (isset($_GET["action"])) {
 if (isset($_GET["verwijder"])) {
     $verwijder = $_GET["verwijder"];
     $verwijderId = $_SESSION["winkelmandje"][$verwijder]->getId(); /* id van product dmv key uit de array winkelmandje */
-    $_SESSION["prijs"] -= ProductService::getProductById($verwijderId)->getPrijs();
+    if (isset($klant) && $klant->getPromotie() == 1) {
+        $_SESSION["prijs"] -= $productSvc->getProductById($verwijderId)->getPromotie();
+    } else {
+        $_SESSION["prijs"] -= $productSvc->getProductById($verwijderId)->getPrijs();
+    }
     unset($_SESSION["winkelmandje"][$verwijder]);
 
     header("Location: afrekenen.php");
@@ -55,15 +68,15 @@ if (isset($_GET["bestelcheck"])) {
     $bestregels = BestregService::getBestreg($bestelling->getId());
 }
 
-if(!isset($bestelling)){
+if (!isset($bestelling)) {
     $bestelling = null;
 }
 
-if(!isset($bestregels)){
+if (!isset($bestregels)) {
     $bestregels = null;
 }
 
-if(!isset($producten)){
+if (!isset($producten)) {
     $producten = null;
 }
 
@@ -75,12 +88,12 @@ if (!isset($bestelcheck)) {
     $bestelcheck = false;
 }
 
-if(!isset($_SESSION["winkelmandje"])){
+if (!isset($_SESSION["winkelmandje"])) {
     $_SESSION["winkelmandje"] = null;
 }
 
 $view = $twig->render("afrekening.twig", array("winkelmandje" => $_SESSION["winkelmandje"],
-    "totaalprijs" => $_SESSION["prijs"], "aangemeld" => $_SESSION["aangemeld"], 
+    "totaalprijs" => $_SESSION["prijs"], "aangemeld" => $_SESSION["aangemeld"],
     "bestelcheck" => $bestelcheck, "bestelling" => $bestelling, "bestregels" => $bestregels,
-    "producten" => $producten));
+    "producten" => $producten, "klant" => $klant));
 print($view);
