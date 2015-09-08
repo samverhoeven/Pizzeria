@@ -40,10 +40,6 @@ a{
     border-right: solid white;
 }
 
-.navigatie li:first-child{
-   // margin-left: 25%;
-}
-
 .navigatie li:last-child{
     border: none;
 }
