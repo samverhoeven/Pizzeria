@@ -34,7 +34,7 @@
                         <th>Naam</th>
                         <th>Prijs</th>
                         <th>Samenstelling</th>
-                    </tr>
+                    </tr> 
                     {% for product in menu %} {# menu wordt hier weergegeven #}
                         <tr>
                             <td>
@@ -53,6 +53,7 @@
                         </tr>
                     {% endfor %}
                 </table>
+                <p class="error">{{databaseError}}</p>
                 {% if leeg == false %} {# hier wordt winkelmandje samengevat en kan men voor bestellen kiezen #}
                     <h1>Winkelmandje</h1>
                     <table>

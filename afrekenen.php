@@ -54,7 +54,11 @@ if (isset($_GET["verwijder"])) { //checkt of er een item uit winkelmandje moet v
 if (isset($_GET["besteld"])) { //bestellingsgegevens in juiste tabellen zetten
     $bestellingId = BestellingService::createBestelling($_SESSION["klant"], $_SESSION["prijs"], date("Y-m-d - H:i:sa"));
     foreach ($_SESSION["winkelmandje"] as $product) {
-        BestregService::createBestreg($bestellingId, $product->getId(), $product->getPrijs());
+        if ($klant->getPromotie() == 1) { //checkt of promotieprijs of gewone prijs aan bestreg moet meegegeven worden
+            BestregService::createBestreg($bestellingId, $product->getId(), $product->getPromotie());
+        } else {
+            BestregService::createBestreg($bestellingId, $product->getId(), $product->getPrijs());
+        }
     }
     header("Location: afrekenen.php?bestelcheck=true");
 }
@@ -69,7 +73,7 @@ if (isset($_GET["bestelcheck"])) { //checkt of bestelling is geplaatst om overzi
 }
 /* Alle niet gedefiniëerde variabelen een waarde geven om notice te voorkomen */
 
-if(!isset($klant)){
+if (!isset($klant)) {
     $klant = null;
 }
 
@@ -96,6 +100,8 @@ if (!isset($bestelcheck)) {
 if (!isset($_SESSION["winkelmandje"])) {
     $_SESSION["winkelmandje"] = null;
 }
+
+error_reporting(E_ALL & ~E_NOTICE);
 
 $view = $twig->render("afrekening.twig", array("winkelmandje" => $_SESSION["winkelmandje"],
     "totaalprijs" => $_SESSION["prijs"], "aangemeld" => $_SESSION["aangemeld"],

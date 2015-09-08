@@ -17,8 +17,8 @@ session_start();
 
 $klantSvc = new KlantService();
 
-if(isset($_SESSION["aangemeld"])){//checkt of er een klant is aangemeld
-    if($_SESSION["aangemeld"]){
+if (isset($_SESSION["aangemeld"])) {//checkt of er een klant is aangemeld
+    if ($_SESSION["aangemeld"]) {
         header("Location: index.php");
         exit(0);
     }
@@ -39,42 +39,57 @@ $bestaatniet = false;
 
 if (isset($_GET["action"])) {//checkt of er iemand wilt inloggen
     if ($_GET["action"] == "login") {
-        $email = trim($_POST["email"]);
-        $wachtwoord = sha1(trim($_POST["wachtwoord"]));
-        $resultaat = $klantSvc->controleerKlant($email, $wachtwoord);
-        if ($resultaat) {
-            $_SESSION["aangemeld"] = true;
-            $_SESSION["klant"] = $klantSvc->getKlantId($email);
-            setcookie("emailCookie", $email);
-            if (isset($_SESSION["bestellen"])) {
-                if ($_SESSION["bestellen"]) {
-                    $_SESSION["bestellen"] = false;
-                    header("Location: afrekenen.php");
-                    exit(0);
+        try {
+            $email = trim($_POST["email"]);
+            $wachtwoord = sha1(trim($_POST["wachtwoord"]));
+            $resultaat = $klantSvc->controleerKlant($email, $wachtwoord);
+            if ($resultaat) {
+                $_SESSION["aangemeld"] = true;
+                $_SESSION["klant"] = $klantSvc->getKlantId($email);
+                setcookie("emailCookie", $email);
+                $klant = $klantSvc->getKlantById($_SESSION["klant"]);
+                if ($klant->getPromotie() == 1) { //als klant inlogd en winkelmandje al gevuld is, moet prijs herberekend worden
+                    if (!empty($_SESSION["winkelmandje"])) {
+                        $_SESSION["prijs"] = 0;
+                        foreach ($_SESSION["winkelmandje"] as $keuze) {
+                            $_SESSION["prijs"] += $keuze->getPromotie();
+                        }
+                    }
+                }
+                if (isset($_SESSION["bestellen"])) {
+                    if ($_SESSION["bestellen"]) {
+                        $_SESSION["bestellen"] = false;
+                        header("Location: afrekenen.php");
+                        exit(0);
+                    }
+                }
+                header("Location: index.php");
+                exit(0);
+            } else { //error handling
+                $geregistreerd = $klantSvc->controleerGeregistreerd($email);
+                if ($geregistreerd) {
+                    $foutegegevens = true;
+                } else {
+                    $bestaatniet = true;
                 }
             }
-            header("Location: index.php");
-            exit(0);
-        } else { //error handling
-            $geregistreerd = $klantSvc->controleerGeregistreerd($email);
-            if ($geregistreerd) {
-                $foutegegevens = true;
-            } else {
-                $bestaatniet = true;
-            }
+        } catch (PDOException $dbe) {
+            $databaseError = "Inloggen is op dit moment niet mogelijk.";
         }
     }
 }
 
 /* Alle niet gedefiniëerde variabelen een waarde geven om notice te voorkomen */
 
-if(!isset($_SESSION["aangemeld"])){
+if (!isset($_SESSION["aangemeld"])) {
     $_SESSION["aangemeld"] = false;
 }
 
-if(!isset($_COOKIE["emailCookie"])){
+if (!isset($_COOKIE["emailCookie"])) {
     $_COOKIE["emailCookie"] = "";
 }
 
-$view = $twig->render("inlogform.twig", array("aangemeld" => $_SESSION["aangemeld"], "email" => $_COOKIE["emailCookie"], "foutegegevens" => $foutegegevens, "bestaatniet" => $bestaatniet));
+error_reporting(E_ALL & ~E_NOTICE);
+
+$view = $twig->render("inlogform.twig", array("aangemeld" => $_SESSION["aangemeld"], "email" => $_COOKIE["emailCookie"], "foutegegevens" => $foutegegevens, "bestaatniet" => $bestaatniet, "databaseError" => $databaseError));
 print($view);

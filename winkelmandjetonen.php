@@ -69,6 +69,8 @@ if (!isset($_SESSION["aangemeld"])) {
     $_SESSION["aangemeld"] = false;
 }
 
+error_reporting(E_ALL & ~E_NOTICE);
+
 $view = $twig->render("winkelmandje.twig", array("winkelmandje" => $_SESSION["winkelmandje"],
     "totaalprijs" => $_SESSION["prijs"], "leeg" => $leeg, "aangemeld" => $_SESSION["aangemeld"], "klant" => $klant));
 print($view);

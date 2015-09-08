@@ -31,5 +31,7 @@ if(!isset($_SESSION["aangemeld"])){
     $_SESSION["aangemeld"] = false;
 }
 
+error_reporting(E_ALL & ~E_NOTICE);
+
 $view = $twig->render("index.twig", array("aangemeld" => $_SESSION["aangemeld"]));
 print($view);

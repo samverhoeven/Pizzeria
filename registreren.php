@@ -37,20 +37,24 @@ $veldleeg = false;
 
 if (isset($_GET["action"])) {
     if ($_GET["action"] == "registreren") {
-        $klantSvc = new KlantService();
-        $geregistreerd = $klantSvc->controleerGeregistreerd($_POST["email"]);
-        if ($geregistreerd) {
-            $bestaat = true; //error handling
-        } else {
-            if (($_POST["voornaam"] != null) && ($_POST["achternaam"] != null) && ($_POST["straat"] != null) && ($_POST["huisnummer"] != null) && ($_POST["postcode"] != null) && ($_POST["woonplaats"] != null) && ($_POST["telefoon"] != null) && ($_POST["email"] != null) && ($_POST["wachtwoord"] != null)) {
-                $klantSvc->createKlant($_POST["achternaam"], $_POST["voornaam"], $_POST["straat"], $_POST["huisnummer"], $_POST["postcode"], $_POST["woonplaats"], $_POST["telefoon"], $_POST["email"], sha1($_POST["wachtwoord"]));
-                header("Location: inloggen.php");
-                exit(0);
+        try {
+            $klantSvc = new KlantService();
+            $geregistreerd = $klantSvc->controleerGeregistreerd($_POST["email"]);
+            if ($geregistreerd) {
+                $bestaat = true; //error handling
             } else {
-                if (($_POST["voornaam"] == null) || ($_POST["achternaam"] == null) || ($_POST["straat"] == null) || ($_POST["huisnummer"] == null) || ($_POST["postcode"] == null) || ($_POST["woonplaats"] == null) || ($_POST["telefoon"] == null) || ($_POST["email"] == null) || ($_POST["wachtwoord"] == null) || ($_POST["wachtwoordCheck"] == null)) {
-                    $veldleeg = true; //error handling
+                if (($_POST["voornaam"] != null) && ($_POST["achternaam"] != null) && ($_POST["straat"] != null) && ($_POST["huisnummer"] != null) && ($_POST["postcode"] != null) && ($_POST["woonplaats"] != null) && ($_POST["telefoon"] != null) && ($_POST["email"] != null) && ($_POST["wachtwoord"] != null)) {
+                    $klantSvc->createKlant($_POST["achternaam"], $_POST["voornaam"], $_POST["straat"], $_POST["huisnummer"], $_POST["postcode"], $_POST["woonplaats"], $_POST["telefoon"], $_POST["email"], sha1($_POST["wachtwoord"]));
+                    header("Location: inloggen.php");
+                    exit(0);
+                } else {
+                    if (($_POST["voornaam"] == null) || ($_POST["achternaam"] == null) || ($_POST["straat"] == null) || ($_POST["huisnummer"] == null) || ($_POST["postcode"] == null) || ($_POST["woonplaats"] == null) || ($_POST["telefoon"] == null) || ($_POST["email"] == null) || ($_POST["wachtwoord"] == null) || ($_POST["wachtwoordCheck"] == null)) {
+                        $veldleeg = true; //error handling
+                    }
                 }
             }
+        } catch (PDOException $dbe) {
+            $databaseError = "Registreren is op dit moment niet mogelijk.";
         }
     }
 }
@@ -61,5 +65,7 @@ if (!isset($_SESSION["aangemeld"])) {
     $_SESSION["aangemeld"] = false;
 }
 
-$view = $twig->render("registratieform.twig", array("aangemeld" => $_SESSION["aangemeld"], "bestaat" => $bestaat, "veldleeg" => $veldleeg));
+error_reporting(E_ALL & ~E_NOTICE);
+
+$view = $twig->render("registratieform.twig", array("aangemeld" => $_SESSION["aangemeld"], "bestaat" => $bestaat, "veldleeg" => $veldleeg, "databaseError" => $databaseError));
 print($view);
