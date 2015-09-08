@@ -8,22 +8,24 @@
     </head>
     <body>
         <div class="alles">
-            <ul class="navigatie">
-                <li>
-                    <a href="index.php">Home</a>
-                </li>
-                <li>
-                    <a href="menutonen.php">Menu</a>
-                </li>
-                <li>
-                    <a href="winkelmandjetonen.php">Winkelmandje</a>
-                </li>
-                {% if aangemeld %}
+            <div class="navwrap">
+                <ul class="navigatie">
                     <li>
-                        <a href="index.php?action=uitloggen">Log uit</a>
+                        <a href="index.php">Home</a>
                     </li>
-                {% endif %}
-            </ul>
+                    <li>
+                        <a href="menutonen.php">Menu</a>
+                    </li>
+                    <li>
+                        <a href="winkelmandjetonen.php">Winkelmandje</a>
+                    </li>
+                    {% if aangemeld %}
+                        <li>
+                            <a href="index.php?action=uitloggen">Log uit</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
             <div class="inhoud">
                 {% if aangemeld %}
                     {% if bestelcheck %} {# hier wordt bestelling samengevat na op bestelknop te drukken #}

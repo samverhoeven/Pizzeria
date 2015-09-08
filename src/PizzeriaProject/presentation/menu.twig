@@ -8,24 +8,26 @@
     </head>
     <body>
         <div class="alles">
-            <ul class="navigatie">
-                <li>
-                    <a href="index.php">Home</a>
-                </li>
-                <li>
-                    <a class="actief" href="menutonen.php">Menu</a>
-                </li>
-                <li>
-                    <a href="winkelmandjetonen.php">Winkelmandje</a>
-                </li>
-                <li>
-                    {% if aangemeld %}
-                        <a href="index.php?action=uitloggen">Log uit</a>
-                    {% else %}
-                        <a href="inloggen.php">Log in</a>
-                    {% endif %}
-                </li>
-            </ul>
+            <div class="navwrap">
+                <ul class="navigatie">
+                    <li>
+                        <a href="index.php">Home</a>
+                    </li>
+                    <li>
+                        <a class="actief" href="menutonen.php">Menu</a>
+                    </li>
+                    <li>
+                        <a href="winkelmandjetonen.php">Winkelmandje</a>
+                    </li>
+                    <li>
+                        {% if aangemeld %}
+                            <a href="index.php?action=uitloggen">Log uit</a>
+                        {% else %}
+                            <a href="inloggen.php">Log in</a>
+                        {% endif %}
+                    </li>
+                </ul>
+            </div>
             <div class="pizza"></div>
             <div class="inhoud">
                 <h1>Menu</h1>
