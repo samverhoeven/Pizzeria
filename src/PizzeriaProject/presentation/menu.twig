@@ -36,7 +36,7 @@
                 <th>Prijs</th>
                 <th>Samenstelling</th>
             </tr>
-            {% for product in menu %}
+            {% for product in menu %} {# menu wordt hier weergegeven #}
                 <tr>
                     <td>
                         {% if product.beschikbaarheid == 1 %}
@@ -54,7 +54,7 @@
                 </tr>
             {% endfor %}
         </table>
-        {% if leeg == false %}
+        {% if leeg == false %} {# hier wordt winkelmandje samengevat en kan men voor bestellen kiezen #}
             <h1>Winkelmandje</h1>
             <table>
                 {% for key, product in winkelmandje%}

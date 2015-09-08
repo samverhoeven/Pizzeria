@@ -18,7 +18,7 @@
         </ul>
         <h1>Inloggen</h1>
         <a href="registreren.php">Ik heb nog geen account</a>
-        {% if foutegegevens %}
+        {% if foutegegevens %} {# error berichten #}
             <p class="error">U vulde een verkeerd emailadres of wachtwoord in!</p>
         {% endif %}
         {% if bestaatniet %}

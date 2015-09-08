@@ -24,7 +24,7 @@
             </li>
         </ul>
         <h1>Winkelmandje</h1>
-        {% if leeg == false %}
+        {% if leeg == false %} {# hier wordt winkelmandje samengevat en kan men voor bestellen kiezen #}
             <table>
                 {% for key, product in winkelmandje%}
                     <tr>
@@ -51,7 +51,7 @@
                     </td>
                 </tr>
             </table>
-        {% else %}
+        {% else %} {# als winkelmandje leeg is #}
             <p>Uw winkelmandje is leeg</p>
         {% endif %}
     </body>

@@ -14,7 +14,7 @@ $classLoader->register();
 
 session_start();
 
-if(isset($_GET["action"])){
+if(isset($_GET["action"])){ //checkt of er uitgelogd wordt
     if($_GET["action"] == uitloggen){
         $_SESSION["aangemeld"] = false;
         unset($_SESSION["winkelmandje"]);
@@ -24,6 +24,8 @@ if(isset($_GET["action"])){
         exit(0);
     }
 }
+
+/* Niet gedefiniëerde variabele een waarde geven om notice te voorkomen */
 
 if(!isset($_SESSION["aangemeld"])){
     $_SESSION["aangemeld"] = false;

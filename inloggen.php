@@ -17,14 +17,14 @@ session_start();
 
 $klantSvc = new KlantService();
 
-if(isset($_SESSION["aangemeld"])){
+if(isset($_SESSION["aangemeld"])){//checkt of er een klant is aangemeld
     if($_SESSION["aangemeld"]){
         header("Location: index.php");
         exit(0);
     }
 }
 
-if (isset($_GET["bestellen"])) {
+if (isset($_GET["bestellen"])) {//checkt of gebruiker van bestelpagina komt
     if ($_GET["bestellen"]) {
         $_SESSION["bestellen"] = true;
     } else {
@@ -37,10 +37,10 @@ if (isset($_GET["bestellen"])) {
 $foutegegevens = false;
 $bestaatniet = false;
 
-if (isset($_GET["action"])) {
+if (isset($_GET["action"])) {//checkt of er iemand wilt inloggen
     if ($_GET["action"] == "login") {
-        $email = $_POST["email"];
-        $wachtwoord = sha1($_POST["wachtwoord"]);
+        $email = trim($_POST["email"]);
+        $wachtwoord = sha1(trim($_POST["wachtwoord"]));
         $resultaat = $klantSvc->controleerKlant($email, $wachtwoord);
         if ($resultaat) {
             $_SESSION["aangemeld"] = true;
@@ -55,7 +55,7 @@ if (isset($_GET["action"])) {
             }
             header("Location: index.php");
             exit(0);
-        } else {
+        } else { //error handling
             $geregistreerd = $klantSvc->controleerGeregistreerd($email);
             if ($geregistreerd) {
                 $foutegegevens = true;
@@ -66,12 +66,14 @@ if (isset($_GET["action"])) {
     }
 }
 
+/* Alle niet gedefiniëerde variabelen een waarde geven om notice te voorkomen */
+
 if(!isset($_SESSION["aangemeld"])){
     $_SESSION["aangemeld"] = false;
 }
 
 if(!isset($_COOKIE["emailCookie"])){
-    $_COOKIE["emailCookie"] = " ";
+    $_COOKIE["emailCookie"] = "";
 }
 
 $view = $twig->render("inlogform.twig", array("aangemeld" => $_SESSION["aangemeld"], "email" => $_COOKIE["emailCookie"], "foutegegevens" => $foutegegevens, "bestaatniet" => $bestaatniet));

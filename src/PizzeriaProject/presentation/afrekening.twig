@@ -22,7 +22,7 @@
             {% endif %}
         </ul>
         {% if aangemeld %}
-            {% if bestelcheck %}
+            {% if bestelcheck %} {# hier wordt bestelling samengevat na op bestelknop te drukken #}
                 Uw bestelling is geplaatst.
                 U bestelde het volgende:
                 <table>
@@ -41,7 +41,7 @@
                         <td>{{ bestelling.prijs }}</td>
                     </tr>
                 </table>
-            {%else%}
+            {%else%} {# hier wordt winkelmandje samengevat en kan men voor bestellen kiezen #}
                 <h1>Afrekenen</h1>
                 <table>
                     {% for key, product in winkelmandje%}
@@ -66,7 +66,7 @@
                     </tr>
                 </table>
             {% endif %}
-        {% else %}
+        {% else %} {# als gebruiker nog niet is ingelogd als hij wilt afrekeken #}
             <p>U dient ingelogd te zijn om af te rekenen.</p>
             <a href="inloggen.php?bestellen=true">Log in</a>
             <br>

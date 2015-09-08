@@ -15,14 +15,14 @@ $classLoader->register();
 
 session_start();
 
-if (isset($_SESSION["aangemeld"])) {
+if (isset($_SESSION["aangemeld"])) {//checkt of er een klant is aangemeld
     if ($_SESSION["aangemeld"]) {
         header("Location: index.php");
         exit(0);
     }
 }
 
-if (isset($_GET["bestellen"])) {
+if (isset($_GET["bestellen"])) { //checkt of gebruiker van bestelpagina komt
     if ($_GET["bestellen"]) {
         $_SESSION["bestellen"] = true;
     } else {
@@ -40,7 +40,7 @@ if (isset($_GET["action"])) {
         $klantSvc = new KlantService();
         $geregistreerd = $klantSvc->controleerGeregistreerd($_POST["email"]);
         if ($geregistreerd) {
-            $bestaat = true;
+            $bestaat = true; //error handling
         } else {
             if (($_POST["voornaam"] != null) && ($_POST["achternaam"] != null) && ($_POST["straat"] != null) && ($_POST["huisnummer"] != null) && ($_POST["postcode"] != null) && ($_POST["woonplaats"] != null) && ($_POST["telefoon"] != null) && ($_POST["email"] != null) && ($_POST["wachtwoord"] != null)) {
                 $productSvc->createKlant($_POST["achternaam"], $_POST["voornaam"], $_POST["straat"], $_POST["huisnummer"], $_POST["postcode"], $_POST["woonplaats"], $_POST["telefoon"], $_POST["email"], sha1($_POST["wachtwoord"]));
@@ -48,12 +48,14 @@ if (isset($_GET["action"])) {
                 exit(0);
             } else {
                 if (($_POST["voornaam"] == null) || ($_POST["achternaam"] == null) || ($_POST["straat"] == null) || ($_POST["huisnummer"] == null) || ($_POST["postcode"] == null) || ($_POST["woonplaats"] == null) || ($_POST["telefoon"] == null) || ($_POST["email"] == null) || ($_POST["wachtwoord"] == null) || ($_POST["wachtwoordCheck"] == null)) {
-                    $veldleeg = true;
+                    $veldleeg = true; //error handling
                 }
             }
         }
     }
 }
+
+/* Niet gedefiniëerde variabele een waarde geven om notice te voorkomen */
 
 if (!isset($_SESSION["aangemeld"])) {
     $_SESSION["aangemeld"] = false;

@@ -10,7 +10,8 @@ class KlantDAO {
 
     public function getByEmail($email) {
         $dbh = new PDO(DBConfig::$DB_CONNSTRING, DBConfig::$DB_USERNAME, DBConfig::$DB_PASSWORD);
-        $sql = "select * from klanten where email = '" . $email . "'";
+        $sql = "select * from klanten where email = '". $email . "'";
+        print($sql . "<br>");
         $resultSet = $dbh->query($sql);
         if ($resultSet) {
             $rij = $resultSet->fetch();

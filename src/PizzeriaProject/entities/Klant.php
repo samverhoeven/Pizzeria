@@ -32,12 +32,10 @@ class Klant {
         $this->bemerking = $bemerking;
         $this->promotie = $promotie;
     }
-    
-        public static function create($id, $naam, $voornaam, $straat, $huisnummer, $postcode, 
-                $woonplaats, $telefoon, $email, $wachtwoord, $bemerking, $promotie){
+
+    public static function create($id, $naam, $voornaam, $straat, $huisnummer, $postcode, $woonplaats, $telefoon, $email, $wachtwoord, $bemerking, $promotie) {
         if (!isset(self::$idMap[$id])) {
-            self::$idMap[$id] = new Klant($id, $naam, $voornaam, $straat, $huisnummer, $postcode, 
-                    $woonplaats, $telefoon, $email, $wachtwoord, $bemerking, $promotie);
+            self::$idMap[$id] = new Klant($id, $naam, $voornaam, $straat, $huisnummer, $postcode, $woonplaats, $telefoon, $email, $wachtwoord, $bemerking, $promotie);
         }
         return self::$idMap[$id];
     }

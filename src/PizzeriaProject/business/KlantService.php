@@ -25,7 +25,7 @@ class KlantService {
         KlantDAO::create($naam, $voornaam, $straat, $huisnummer, $postcode, $woonplaats, $telefoon, $email, $wachtwoord);
     }
 
-    public function controleerKlant($email, $wachtwoord) {
+    public function controleerKlant($email, $wachtwoord) { //controleert of inloggegevens van klant kloppen
         $klant = KlantDAO::getByEmail($email);
         if (isset($klant) && $klant->getWachtwoord() == $wachtwoord) {
             return true;
@@ -34,7 +34,7 @@ class KlantService {
         }
     }
 
-    public function controleerGeregistreerd($email) {
+    public function controleerGeregistreerd($email) { //checkt betreffend emailadres geregistreerd is
         $klant = KlantDAO::getByEmail($email);
         if (isset($klant)) {
             return true;
