@@ -10,7 +10,7 @@ class ProductDAO{
     public function getAll(){
         $lijst = array();
         $dbh = new PDO(DBConfig::$DB_CONNSTRING, DBConfig::$DB_USERNAME, DBConfig::$DB_PASSWORD);
-        $sql = "select * from producten";
+        $sql = "select * from producten order by prijs";
         $resultSet = $dbh->query($sql);
         foreach($resultSet as $rij){
             $lijst[] = Product::create($rij["id"], $rij["naam"], $rij["prijs"], $rij["samenstelling"], $rij["beschikbaarheid"], $rij["promotie"]);
