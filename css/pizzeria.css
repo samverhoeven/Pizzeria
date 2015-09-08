@@ -1,0 +1,93 @@
+@charset "utf-8";
+@import "normalize.css";
+
+body{
+    background: url(../img/vlag.jpeg) no-repeat center center fixed;
+    background-size: cover;
+}
+
+h1{
+    color: #37924D;
+}
+
+a{
+   color: #000; 
+   text-decoration: none;
+}
+
+.alles{
+    width: 70%;
+    margin: 50px auto 0 auto;
+    background-color: white;
+    height: 100%;
+}
+
+/* NAVIGATIE */
+.navigatie{
+    background-color: #7E0001;
+    margin: 0px;
+    list-style-type: none;
+    padding: 10px 20px;
+    
+}
+.navigatie li{
+    display: inline;
+    border-right: solid white;
+}
+
+.navigatie li:first-child{
+    margin-left: 25%;
+}
+
+.navigatie li:last-child{
+    border: none;
+}
+
+.navigatie a{
+    color: white;
+    text-decoration: none;
+    padding: 5px 15px;
+}
+
+.navigatie a:hover{
+    color: #37924D;
+}
+
+.active{
+    color: #37924D;
+}
+
+/* PIZZA AFBEELDING */
+.pizza{
+    background: url(../img/pizza.jpg) no-repeat center center;
+    background-size: cover;
+    height: 400px;
+}
+
+/* VERANDERENDE INHOUD PER PAGINA */
+.inhoud{
+    padding: 10px 20px;
+}
+
+th, td{
+    padding: 3px 20px 3px 0;
+}
+
+th{
+    text-align: left;
+}
+
+footer{
+    background-color: #D0A758;
+    height: 100%;
+    padding: 5px 20px;
+}
+
+.error{
+    color:red;
+}
+
+.nietBeschikbaar{
+    pointer-events: none;
+    color : #ddd;
+}

@@ -2,28 +2,41 @@
 <html>
     <head>
         <meta charset = utf-8>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Pizzeria</title>
+        <link rel="stylesheet" href="css/pizzeria.css" />
     </head>
     <body>
-        <h1>Pizzeria</h1>
-        <ul>
-            <li>
-                <a id="active" href="index.php">Home</a>
-            </li>
-            <li>
-                <a href="menutonen.php">Menu</a>
-            </li>
-            <li>
-                <a href="winkelmandjetonen.php">Winkelmandje</a>
-            </li>
-            <li>
-                {% if aangemeld %}
-                    <a href="index.php?action=uitloggen">Log uit</a>
-                {% else %}
-                    <a href="inloggen.php">Log in</a>
-                {% endif %}
-            </li>
-        </ul>
-        <p>Dit is pizzeria Samuel. Maak uw keuze uit het menu.</p>
+        <div class="alles">
+            <ul class="navigatie">
+                <li>
+                    <a class="active" href="index.php">Home</a>
+                </li>
+                <li>
+                    <a href="menutonen.php">Menu</a>
+                </li>
+                <li>
+                    <a href="winkelmandjetonen.php">Winkelmandje</a>
+                </li>
+                <li>
+                    {% if aangemeld %}
+                        <a href="index.php?action=uitloggen">Log uit</a>
+                    {% else %}
+                        <a href="inloggen.php">Log in</a>
+                    {% endif %}
+                </li>
+            </ul>
+            <div class="pizza"></div>
+            <div class="inhoud">
+                <h1>Pizzeria</h1>
+                <p>Dit is pizzeria Samuel. Maak uw keuze uit het menu.</p>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </p>
+            </div>
+            <footer>
+                <p>Gemaakt door: Sam Verhoeven</p>
+            </footer>
+        </div>
     </body>
 </html>

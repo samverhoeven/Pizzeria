@@ -68,6 +68,11 @@ if (isset($_GET["bestelcheck"])) { //checkt of bestelling is geplaatst om overzi
     $bestregels = BestregService::getBestreg($bestelling->getId());
 }
 /* Alle niet gedefiniëerde variabelen een waarde geven om notice te voorkomen */
+
+if(!isset($klant)){
+    $klant = null;
+}
+
 if (!isset($bestelling)) {
     $bestelling = null;
 }

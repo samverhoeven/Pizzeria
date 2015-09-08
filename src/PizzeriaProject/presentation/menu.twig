@@ -2,82 +2,86 @@
 <html>
     <head>
         <meta charset = utf-8>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Pizzeria</title>
-        <style>
-            .nietBeschikbaar{
-                pointer-events: none;
-                color : #ddd;
-            }
-        </style>
+        <link rel="stylesheet" href="css/pizzeria.css" />
     </head>
     <body>
-        <ul>
-            <li>
-                <a href="index.php">Home</a>
-            </li>
-            <li>
-                <a id="active" href="menutonen.php">Menu</a>
-            </li>
-            <li>
-                <a href="winkelmandjetonen.php">Winkelmandje</a>
-            </li>
-            <li>
-                {% if aangemeld %}
-                    <a href="index.php?action=uitloggen">Log uit</a>
-                {% else %}
-                    <a href="inloggen.php">Log in</a>
-                {% endif %}
-            </li>
-        </ul>
-        <h1>Menu</h1>
-        <table>
-            <tr>
-                <th>Naam</th>
-                <th>Prijs</th>
-                <th>Samenstelling</th>
-            </tr>
-            {% for product in menu %} {# menu wordt hier weergegeven #}
-                <tr>
-                    <td>
-                        {% if product.beschikbaarheid == 1 %}
-                            <a href="menutonen.php?product={{ product.id }}">{{ product.naam }}</a>
-                        {% else %}
-                            <a class="nietBeschikbaar" href="menutonen.php?product={{ product.id }}">{{ product.naam }}</a> (niet beschikbaar)
-                        {% endif %}
-                    </td>
-                    {% if aangemeld == true and klant.promotie == 1 %}
-                        <td>&euro; {{ product.promotie }}</td>
+        <div class="alles">
+            <ul class="navigatie">
+                <li>
+                    <a href="index.php">Home</a>
+                </li>
+                <li>
+                    <a class="active" href="menutonen.php">Menu</a>
+                </li>
+                <li>
+                    <a href="winkelmandjetonen.php">Winkelmandje</a>
+                </li>
+                <li>
+                    {% if aangemeld %}
+                        <a href="index.php?action=uitloggen">Log uit</a>
                     {% else %}
-                        <td>&euro; {{ product.prijs }}</td>
+                        <a href="inloggen.php">Log in</a>
                     {% endif %}
-                    <td>{{ product.samenstelling }}</td>
-                </tr>
-            {% endfor %}
-        </table>
-        {% if leeg == false %} {# hier wordt winkelmandje samengevat en kan men voor bestellen kiezen #}
-            <h1>Winkelmandje</h1>
-            <table>
-                {% for key, product in winkelmandje%}
+                </li>
+            </ul>
+            <div class="pizza"></div>
+            <div class="inhoud">
+                <h1>Menu</h1>
+                <table>
                     <tr>
-                        <td>{{ product.naam }}</td>
-                        {% if aangemeld == true and klant.promotie == 1 %}
-                            <td>&euro; {{ product.promotie }}</td>
-                        {% else %}
-                            <td>&euro; {{ product.prijs }}</td>
-                        {% endif %}
-                        <td><a href="menutonen.php?verwijder={{ key }}">X</a></td>
+                        <th>Naam</th>
+                        <th>Prijs</th>
+                        <th>Samenstelling</th>
                     </tr>
-                {% endfor %}
-                <tr>
-                    <td></td>
-                    <td>&euro; {{ totaalprijs }}</td>
-                </tr>
-                <tr>
-                    <td>
-                        <a href="afrekenen.php"><button>Afrekenen</button></a>
-                    </td>
-                </tr>
-            </table>
-        {% endif %}
+                    {% for product in menu %} {# menu wordt hier weergegeven #}
+                        <tr>
+                            <td>
+                                {% if product.beschikbaarheid == 1 %}
+                                    <a href="menutonen.php?product={{ product.id }}">{{ product.naam }}</a>
+                                {% else %}
+                                    <a class="nietBeschikbaar" href="menutonen.php?product={{ product.id }}">{{ product.naam }}</a> (niet beschikbaar)
+                                {% endif %}
+                            </td>
+                            {% if aangemeld == true and klant.promotie == 1 %}
+                                <td>&euro; {{ product.promotie }}</td>
+                            {% else %}
+                                <td>&euro; {{ product.prijs }}</td>
+                            {% endif %}
+                            <td>{{ product.samenstelling }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+                {% if leeg == false %} {# hier wordt winkelmandje samengevat en kan men voor bestellen kiezen #}
+                    <h1>Winkelmandje</h1>
+                    <table>
+                        {% for key, product in winkelmandje%}
+                            <tr>
+                                <td>{{ product.naam }}</td>
+                                {% if aangemeld == true and klant.promotie == 1 %}
+                                    <td>&euro; {{ product.promotie }}</td>
+                                {% else %}
+                                    <td>&euro; {{ product.prijs }}</td>
+                                {% endif %}
+                                <td><a href="menutonen.php?verwijder={{ key }}">X</a></td>
+                            </tr>
+                        {% endfor %}
+                        <tr>
+                            <td></td>
+                            <td>&euro; {{ totaalprijs }}</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a href="afrekenen.php"><button>Afrekenen</button></a>
+                            </td>
+                        </tr>
+                    </table>
+                {% endif %}
+            </div>
+            <footer>
+                <p>Gemaakt door: Sam Verhoeven</p>
+            </footer>
+        </div>
     </body>
 </html>

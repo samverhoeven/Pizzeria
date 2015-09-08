@@ -57,6 +57,10 @@ if (empty($_SESSION["winkelmandje"])) { // Zorgt voor niet tonen van winkelmandj
 
 /* Alle niet gedefiniëerde variabelen een waarde geven om notice te voorkomen */
 
+if(!isset($klant)){
+    $klant = null;
+}
+
 if (!isset($_SESSION["winkelmandje"])) {
     $_SESSION["winkelmandje"] = null;
 }

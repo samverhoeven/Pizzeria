@@ -62,11 +62,16 @@ if (isset($_GET["action"])) { //checkt of er uitgelogd wordt
     }
 }
 
-/* Alle niet gedefiniëerde variabelen een waarde geven om notice te voorkomen */
-if (empty($_SESSION["winkelmandje"])) {
+
+if (empty($_SESSION["winkelmandje"])) { // Zorgt voor niet tonen van winkelmandje als dat leeg is
     $leeg = true;
 } else {
     $leeg = false;
+}
+
+/* Alle niet gedefiniëerde variabelen een waarde geven om notice te voorkomen */
+if(!isset($klant)){
+    $klant = null;
 }
 
 if (!isset($_SESSION["winkelmandje"])) {

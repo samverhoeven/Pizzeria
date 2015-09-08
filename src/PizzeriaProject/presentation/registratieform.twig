@@ -2,73 +2,83 @@
 <html>
     <head>
         <meta charset = utf-8>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Pizzeria</title>
+        <link rel="stylesheet" href="css/pizzeria.css" />
     </head>
     <body>
-        <ul>
-            <li>
-                <a id="active" href="index.php">Home</a>
-            </li>
-            <li>
-                <a href="menutonen.php">Menu</a>
-            </li>
-            <li>
-                <a href="winkelmandjetonen.php">Winkelmandje</a>
-            </li>
-            <li>
-                <a href="inloggen.php">Log in</a>
-            </li>
-        </ul>
-        <h1>Registreren</h1>
-        {% if bestaat %} {# error berichten #}
-        <p class="error">Dit emailadres is al in gebruik!</p>
-        {% endif %}
-        {% if veldleeg %}
-        <p class="error">Alle velden dienen ingevuld te worden!</p>
-        {% endif %}
-        <form method="post" action="registreren.php?action=registreren">
-            <table>
-                <tr>
-                    <td><label for="voornaam">Voornaam:</label></td>
-                    <td><input type="text" name="voornaam"></td>
-                </tr>
-                <tr>
-                    <td><label for="achternaam">Achternaam:</label></td>
-                    <td><input type="text" name="achternaam"></td>
-                </tr>
-                <tr>
-                    <td><label for="straat">Straat:</label></td>
-                    <td><input type="text" name="straat"></td>
-                </tr>
-                <tr>
-                    <td><label for="huisnummer">Huisnummer:</label></td>
-                    <td><input type="text" name="huisnummer"></td>
-                </tr>
-                <tr>
-                    <td><label for="postcode">Postcode:</label></td>
-                    <td><input type="text" name="postcode"></td>
-                </tr>
-                <tr>
-                    <td><label for="woonplaats">Woonplaats:</label></td>
-                    <td><input type="text" name="woonplaats"></td>
-                </tr>
-                <tr>
-                    <td><label for="telefoon">Telefoon:</label></td>
-                    <td><input type="text" name="telefoon"></td>
-                </tr>
-                <tr>
-                    <td><label for="email">E-mailadres:</label></td>
-                    <td><input type="text" name="email"></td>
-                </tr>
-                <tr>
-                    <td><label for="wachtwoord">Wachtwoord:</label></td>
-                    <td><input type="password" name="wachtwoord"></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td><input type="submit" value="Registreren"></td>
-                </tr>
-            </table>
-        </form>
+        <div class="alles">
+            <ul class="navigatie">
+                <li>
+                    <a href="index.php">Home</a>
+                </li>
+                <li>
+                    <a href="menutonen.php">Menu</a>
+                </li>
+                <li>
+                    <a href="winkelmandjetonen.php">Winkelmandje</a>
+                </li>
+                <li>
+                    <a href="inloggen.php">Log in</a>
+                </li>
+            </ul>
+            <div class="pizza"></div>
+            <div class="inhoud">
+                <h1>Registreren</h1>
+                {% if bestaat %} {# error berichten #}
+                    <p class="error">Dit emailadres is al in gebruik!</p>
+                {% endif %}
+                {% if veldleeg %}
+                    <p class="error">Alle velden dienen ingevuld te worden!</p>
+                {% endif %}
+                <form method="post" action="registreren.php?action=registreren">
+                    <table>
+                        <tr>
+                            <td><label for="voornaam">Voornaam:</label></td>
+                            <td><input type="text" name="voornaam"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="achternaam">Achternaam:</label></td>
+                            <td><input type="text" name="achternaam"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="straat">Straat:</label></td>
+                            <td><input type="text" name="straat"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="huisnummer">Huisnummer:</label></td>
+                            <td><input type="text" name="huisnummer"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="postcode">Postcode:</label></td>
+                            <td><input type="text" name="postcode"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="woonplaats">Woonplaats:</label></td>
+                            <td><input type="text" name="woonplaats"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="telefoon">Telefoon:</label></td>
+                            <td><input type="text" name="telefoon"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="email">E-mailadres:</label></td>
+                            <td><input type="text" name="email"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="wachtwoord">Wachtwoord:</label></td>
+                            <td><input type="password" name="wachtwoord"></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td><input type="submit" value="Registreren"></td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+            <footer>
+                <p>Gemaakt door: Sam Verhoeven</p>
+            </footer>
+        </div>
     </body>
 </html>
