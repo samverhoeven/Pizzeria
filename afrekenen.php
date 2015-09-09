@@ -71,6 +71,11 @@ if (isset($_GET["bestelcheck"])) { //checkt of bestelling is geplaatst om overzi
     $bestelling = BestellingService::getBestelling($_SESSION["klant"]);
     $bestregels = BestregService::getBestreg($bestelling->getId());
 }
+
+if (empty($_SESSION["winkelmandje"])) { // Zorgt voor niet tonen van winkelmandje als dat leeg is
+    header("Location: winkelmandjetonen.php");
+}
+
 /* Alle niet gedefiniëerde variabelen een waarde geven om notice te voorkomen */
 
 if (!isset($klant)) {
@@ -106,5 +111,5 @@ error_reporting(E_ALL & ~E_NOTICE);
 $view = $twig->render("afrekening.twig", array("winkelmandje" => $_SESSION["winkelmandje"],
     "totaalprijs" => $_SESSION["prijs"], "aangemeld" => $_SESSION["aangemeld"],
     "bestelcheck" => $bestelcheck, "bestelling" => $bestelling, "bestregels" => $bestregels,
-    "producten" => $producten, "klant" => $klant));
+    "producten" => $producten, "klant" => $klant, "leeg" => $leeg));
 print($view);
