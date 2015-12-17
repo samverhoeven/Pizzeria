@@ -9,7 +9,19 @@ use PDOException;
 
 class KlantDAO {
 
+    public function getAll(){
+        $dbh = new PDO(DBConfig::$DB_CONNSTRING, DBConfig::$DB_USERNAME, DBConfig::$DB_PASSWORD);
+        $sql = "select * from klanten";
+        $resultset = $dbh->query($sql);
+        foreach($resultset as $rij){
+            $lijst[] = Klant::create($rij["id"], $rij["naam"], $rij["voornaam"], $rij["straat"], $rij["huisnummer"], $rij["postcode"], $rij["woonplaats"], $rij["telefoon"], $rij["email"], $rij["wachtwoord"], $rij["bemerking"], $rij["promotie"]);
+        }
+        $dbh = null;
+        return $lijst;
+    }
+    
     public function getByEmail($email) { //klantgegevens ophalen adhv een emailadres
+        
         $dbh = new PDO(DBConfig::$DB_CONNSTRING, DBConfig::$DB_USERNAME, DBConfig::$DB_PASSWORD);
         if (!isset($dbh)) {
             throw new PDOException();

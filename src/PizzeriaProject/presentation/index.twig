@@ -5,6 +5,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Pizzeria</title>
         <link rel="stylesheet" href="css/pizzeria.css" />
+        <link href="scripts/jQuery/jQuery-slideshow-plugin/plugin.css" rel="stylesheet" type="text/css"/>
+        <script src="scripts/jQuery/jquery-1.11.3.min.js" type="text/javascript"></script>
+        <script src="scripts/jQuery/jQuery-slideshow-plugin/jquery.hammer-full.min.js" type="text/javascript"></script>
+        <script src="scripts/jQuery/jQuery-slideshow-plugin/plugin.js" type="text/javascript"></script>
+        <script src="scripts/js/pizzeria.js" type="text/javascript"></script>
     </head>
     <body>
         <div class="alles">
@@ -28,7 +33,7 @@
                     </li>
                 </ul>
             </div>
-            <div class="pizza"></div>
+            <div class="pizza"><img id="slideshow" src="img/pizza1.jpg" data-slideshow="img/pizza2.jpg|img/pizza3.jpg" /></div>
             <div class="inhoud">
                 <h1>Pizzeria</h1>
                 <p>Dit is pizzeria Samuel. Maak uw keuze uit het menu.</p>

@@ -72,9 +72,9 @@ if (isset($_GET["bestelcheck"])) { //checkt of bestelling is geplaatst om overzi
     $bestregels = BestregService::getBestreg($bestelling->getId());
 }
 
-if (empty($_SESSION["winkelmandje"])) { // Zorgt voor niet tonen van winkelmandje als dat leeg is
-    header("Location: winkelmandjetonen.php");
-}
+//if (empty($_SESSION["winkelmandje"])) { // Zorgt voor niet tonen van winkelmandje als dat leeg is
+//    header("Location: winkelmandjetonen.php");
+//}
 
 /* Alle niet gedefiniëerde variabelen een waarde geven om notice te voorkomen */
 

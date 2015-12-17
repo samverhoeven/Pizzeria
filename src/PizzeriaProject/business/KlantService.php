@@ -6,6 +6,11 @@ use PizzeriaProject\Data\KlantDAO;
 
 class KlantService {
 
+    public function getAlleKlanten(){
+       $klanten = KlantDAO::getAll();
+       return $klanten;
+    }
+
     public function getKlantByEmail($email) { //klantgegevens ophalen adhv een emailadres
         $klant = KlantDAO::getByEmail($email);
         return $klant;

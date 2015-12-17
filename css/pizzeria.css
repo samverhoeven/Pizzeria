@@ -1,6 +1,7 @@
 @charset "utf-8";
 @import "normalize.css";
 
+/* ALGEMEEN */
 body{
     background: url(../img/vlag.jpeg) no-repeat center center fixed;
     background-size: cover;
@@ -15,6 +16,7 @@ a{
    text-decoration: none;
 }
 
+/* DIV DIE INHOUD CENTRAAL ZET */
 .alles{
     width: 70%;
     margin: 50px auto 0 auto;
@@ -60,9 +62,10 @@ a{
 
 /* PIZZA AFBEELDING */
 .pizza{
-    background: url(../img/pizza.jpg) no-repeat center center;
-    background-size: cover;
-    height: 400px;
+   background: transparent url(../img/pizza1.jpg) no-repeat center center;
+   background-size: cover;
+   height: 400px;
+   width: 100%;
 }
 
 /* VERANDERENDE INHOUD PER PAGINA */
@@ -79,16 +82,24 @@ th{
     text-align: left;
 }
 
+/* FOOTER */
 footer{
     background-color: #D0A758;
     height: 100%;
     padding: 5px 20px;
 }
 
+
+/* EXTRA */
 .error{
     color:red;
 }
-
+label.error{
+    margin-left: 5px;
+}
+input.error{
+    color: inherit
+}
 .nietBeschikbaar{
     pointer-events: none;
     color : #ddd;

@@ -2,7 +2,9 @@
 
 namespace PizzeriaProject\Entities;
 
-class Bestelregel {
+use JsonSerializable;
+
+class Bestelregel implements JsonSerializable{
 
     private static $idMap = array();
     private $id;
@@ -54,6 +56,18 @@ class Bestelregel {
 
     function setPrijs($prijs) {
         $this->regelprijs = $prijs;
+    }
+        
+    public function jsonSerialize()
+    {
+        return [
+            'Bestreg' => [
+                'Id' => $this->id,
+                'BestelId' => $this->bestelId,
+                'ProductId' => $this->productId,
+                'Prijs' => $this->prijs
+            ]
+        ];
     }
 }
 

@@ -2,7 +2,9 @@
 
 namespace PizzeriaProject\Entities; 
 
-class Product {
+use JsonSerializable;
+
+class Product implements JsonSerializable{
     private static $idMap = array();
     private $id;
     private $naam;
@@ -75,6 +77,18 @@ class Product {
         $this->promotie = $promotie;
     }
 
-
+    public function jsonSerialize()
+    {
+        return [
+            'Product' => [
+                'Id' => $this->id,
+                'Naam' => $this->naam,
+                'Prijs' => $this->prijs,
+                'Samenstelling' => $this->samenstelling,
+                'Beschikbaarheid' => $this->beschikbaarheid,
+                'Promotie' => $this->promotie
+            ]
+        ];
+    }
 }
 

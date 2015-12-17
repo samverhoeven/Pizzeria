@@ -2,7 +2,9 @@
 
 namespace PizzeriaProject\Entities;
 
-class Bestelling {
+use JsonSerializable;
+
+class Bestelling implements JsonSerializable{
 
     private static $idMap = array();
     private $id;
@@ -23,7 +25,7 @@ class Bestelling {
         }
         return self::$idMap[$id];
     }
-
+    
     function getId() {
         return $this->id;
     }
@@ -55,5 +57,16 @@ class Bestelling {
     function setDatum($datum) {
         $this->datum = $datum;
     }
-
+    
+    public function jsonSerialize()
+    {
+        return [
+            'Bestelling' => [
+                'Id' => $this->id,
+                'KlantId' => $this->klantId,
+                'Prijs' => $this->prijs,
+                'Datum' => $this->datum
+            ]
+        ];
+    }
 }

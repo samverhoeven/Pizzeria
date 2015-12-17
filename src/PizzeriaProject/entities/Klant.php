@@ -2,7 +2,9 @@
 
 namespace PizzeriaProject\Entities;
 
-class Klant {
+use JsonSerializable;
+
+class Klant implements JsonSerializable {
 
     private static $idMap = array();
     private $id;
@@ -136,4 +138,22 @@ class Klant {
         $this->promotie = $promotie;
     }
 
+    public function jsonSerialize() {
+        return [
+            'Klant' => [
+                'Id' => $this->id,
+                'Naam' => $this->naam,
+                'Vooraam' => $this->voornaam,
+                'Straat' => $this->straat,
+                'Huisnummer' => $this->huisnummer,
+                'Postcode' => $this->postcode,
+                'Woonplaats' => $this->woonplaats,
+                'Telefoon' => $this->telefoon,
+                'Email' => $this->email,
+                'Wachtwoord' => $this->wachtwoord,
+                'Bemerking' => $this->bemerking,
+                'Promotie' => $this->promotie
+            ]
+        ];
+    }
 }
